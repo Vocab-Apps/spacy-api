@@ -27,6 +27,8 @@ class SpacyManager():
         # chinese models
         import spacy.lang.zh
         self.engines['zh_char'] = spacy.lang.zh.Chinese()
+        self.engines['zh_jieba'] = spacy.lang.zh.Chinese.from_config({"nlp": {"tokenizer": {"segmenter": "jieba"}}})
+        self.engines['zh_pkuseg'] = spacy.lang.zh.Chinese.from_config({"nlp": {"tokenizer": {"segmenter": "pkuseg"}}})
 
         logger.info('finished loading engines')
 
