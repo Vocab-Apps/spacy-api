@@ -1,27 +1,47 @@
+import os
 import unittest
 import json
 import pprint
+import requests
 from api import app
 
 class ApiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         super(ApiTests, cls).setUpClass()
-        cls.client = app.test_client()
+        
+        external_url = os.environ.get('SPACY_API_EXTERNAL_URL', None)
+        if external_url == None:
+            cls.client = app.test_client()
+            cls.external_url = None
+        else:
+            cls.external_url = external_url
 
     @classmethod
     def tearDownClass(cls):
         pass
 
+    def get_query(self, path):
+        if self.external_url != None:
+            return requests.get(self.external_url + path)
+        else:
+            return self.client.get(path)
+
+    def post_query(self, path, data):
+        if self.external_url != None:
+            return requests.post(self.external_url + path, data=data)
+        else:
+            return self.client.post(path, json=data)
+
     def test_languages(self):
-        response = self.client.get('/v1/language_list')
+        response = self.get_query('/v1/language_list')
         data = json.loads(response.data)
         self.assertIn('en', data)
 
     def test_tokenize_english(self):
         text = "I was reading today's paper."
 
-        response = self.client.post('/v1/tokenize', json={'language': 'en', 'text': text})
+        response = self.post_query('/v1/tokenize', {'language': 'en', 'text': text})
         data = json.loads(response.data)        
 
         pprint.pprint(data)
@@ -67,7 +87,7 @@ class ApiTests(unittest.TestCase):
     def test_tokenize_french(self):
         text = "Le nouveau plan d’investissement du gouvernement."
 
-        response = self.client.post('/v1/tokenize', json={'language': 'fr', 'text': text})
+        response = self.post_query('/v1/tokenize', data={'language': 'fr', 'text': text})
         data = json.loads(response.data)        
 
         pprint.pprint(data)
@@ -118,7 +138,7 @@ class ApiTests(unittest.TestCase):
     def test_tokenize_chinese_chars(self):
         text = "送外卖的人"
 
-        response = self.client.post('/v1/tokenize', json={'language': 'zh_char', 'text': text})
+        response = self.post_query('/v1/tokenize', data={'language': 'zh_char', 'text': text})
         data = json.loads(response.data)        
 
         expected_result_chars = [{'can_translate': True,
@@ -148,7 +168,7 @@ class ApiTests(unittest.TestCase):
     def test_tokenize_chinese_words(self):
         text = "送外卖的人"
 
-        response = self.client.post('/v1/tokenize', json={'language': 'zh_jieba', 'text': text})
+        response = self.post_query('/v1/tokenize', data={'language': 'zh_jieba', 'text': text})
         data = json.loads(response.data)        
 
         expected_result_words = [{'can_translate': True,
