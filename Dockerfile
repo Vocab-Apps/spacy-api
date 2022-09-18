@@ -28,6 +28,7 @@ RUN python3 -m spacy download es_dep_news_trf
 RUN python3 -m spacy download ru_core_news_lg
 RUN python3 -m spacy download pl_core_news_lg
 RUN python3 -m spacy download it_core_news_lg
+RUN python3 -m spacy download ko_core_news_lg
 
 # copy app files
 COPY api.py start.sh ./
