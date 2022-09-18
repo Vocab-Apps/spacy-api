@@ -1,10 +1,7 @@
 import unittest
 import json
-import tempfile
-import datetime
-import urllib.parse
 import pprint
-from app import app
+from api import app
 
 class ApiTests(unittest.TestCase):
     @classmethod
