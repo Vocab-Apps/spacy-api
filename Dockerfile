@@ -22,6 +22,12 @@ RUN pip3 install --no-cache-dir -r requirements.txt && pip3 cache purge
 RUN python3 -m spacy download en_core_web_trf
 RUN python3 -m spacy download fr_dep_news_trf
 RUN python3 -m spacy download zh_core_web_trf
+RUN python3 -m spacy download ja_core_news_lg
+RUN python3 -m spacy download de_dep_news_trf
+RUN python3 -m spacy download es_dep_news_trf
+RUN python3 -m spacy download ru_core_news_lg
+RUN python3 -m spacy download pl_core_news_lg
+RUN python3 -m spacy download it_core_news_lg
 
 # copy app files
 COPY api.py start.sh ./
