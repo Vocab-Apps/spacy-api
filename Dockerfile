@@ -31,7 +31,7 @@ RUN python3 -m spacy download fr_dep_news_trf
 RUN python3 -m spacy download zh_core_web_trf
 
 # copy app files
-COPY api.pi start.sh ./
+COPY api.py start.sh ./
 
 EXPOSE 8042
 ENTRYPOINT ["./start.sh"]
