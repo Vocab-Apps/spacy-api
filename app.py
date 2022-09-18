@@ -22,6 +22,11 @@ class SpacyManager():
 
         import en_core_web_trf
         self.engines['en'] = en_core_web_trf.load()
+        import fr_dep_news_trf
+        self.engines['fr'] = fr_dep_news_trf.load()
+
+
+        logger.info('finished loading engines')
 
     def language_list(self):
         return list(self.engines.keys())

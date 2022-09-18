@@ -67,4 +67,55 @@ class ApiTests(unittest.TestCase):
         
         self.assertEqual(data, expected_result)        
 
+    def test_tokenize_french(self):
+        text = "Le nouveau plan d’investissement du gouvernement."
+
+        response = self.client.post('/v1/tokenize', json={'language': 'fr', 'text': text})
+        data = json.loads(response.data)        
+
+        pprint.pprint(data)
+        
+        expected_result = [{'can_translate': True,
+            'can_transliterate': True,
+            'lemma': 'le',
+            'pos_description': 'determiner',
+            'token': 'Le'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': 'nouveau',
+            'pos_description': 'adjective',
+            'token': 'nouveau'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': 'plan',
+            'pos_description': 'noun',
+            'token': 'plan'},
+            {'can_translate': False,
+            'can_transliterate': False,
+            'lemma': 'd’',
+            'pos_description': 'adposition',
+            'token': 'd’'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': 'investissement',
+            'pos_description': 'noun',
+            'token': 'investissement'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': 'de',
+            'pos_description': 'adposition',
+            'token': 'du'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': 'gouvernement',
+            'pos_description': 'noun',
+            'token': 'gouvernement'},
+            {'can_translate': False,
+            'can_transliterate': False,
+            'lemma': '.',
+            'pos_description': 'punctuation',
+            'token': '.'}]
+        
+        self.assertEqual(data, expected_result)                
+
 
