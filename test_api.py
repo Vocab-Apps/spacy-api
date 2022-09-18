@@ -115,4 +115,32 @@ class ApiTests(unittest.TestCase):
         
         self.assertEqual(data, expected_result)                
 
+    def test_tokenize_chinese_chars(self):
+        text = "送外卖的人"
+
+        response = self.client.post('/v1/tokenize', json={'language': 'zh_char', 'text': text})
+        data = json.loads(response.data)        
+
+        expected_result_chars = [{'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '送',
+            'token': '送'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '外',
+            'token': '外'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '卖',
+            'token': '卖'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '的',
+            'token': '的'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '人',
+            'token': '人'}]
+        
+        self.assertEqual(data, expected_result_chars)                
 
