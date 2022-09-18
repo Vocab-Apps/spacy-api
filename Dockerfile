@@ -1,15 +1,5 @@
-# building for dev:
-# docker build -t lucwastiaux/cloud-language-tools:dev -f Dockerfile .
-# docker push lucwastiaux/cloud-language-tools:dev
-# 
-# pushing to digitalocean registry
-# docker tag lucwastiaux/cloud-language-tools:dev-3 registry.digitalocean.com/luc/cloud-language-tools:dev-3
-# docker push registry.digitalocean.com/luc/cloud-language-tools:dev-3
-
 # running locally:
-# docker run --env-file /home/luc/python/cloud-language-tools-secrets/cloud-language-tools-local  -p 0.0.0.0:8042:8042/tcp lucwastiaux/cloud-language-tools:20220902-7
-# inspecting space usage
-# docker container exec 224e53da8507 du -hc --max-depth=1 /root
+# docker run --name spacy_api -d -p 0.0.0.0:8042:8042/tcp lucwastiaux/spacy-api:20220918-3
 
 FROM ubuntu:20.04
 
