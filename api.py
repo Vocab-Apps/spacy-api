@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, send_file, jsonify, make_response
+from flask import Flask, request
 import flask_restful
 import logging
 import spacy
