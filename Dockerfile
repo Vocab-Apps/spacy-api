@@ -1,5 +1,8 @@
 # running locally:
 # docker run --name spacy_api -d -p 0.0.0.0:8042:8042/tcp lucwastiaux/spacy-api:20220918-3
+# stopping:
+# docker container stop spacy_api
+# docker container rm spacy_api
 
 FROM ubuntu:20.04
 
