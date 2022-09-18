@@ -24,6 +24,20 @@ class SpacyManager():
         self.engines['en'] = en_core_web_trf.load()
         import fr_dep_news_trf
         self.engines['fr'] = fr_dep_news_trf.load()
+        import ja_core_news_lg
+        self.engines['ja'] = ja_core_news_lg.load()
+        import de_dep_news_trf
+        self.engines['de'] = de_dep_news_trf.load()
+        import es_dep_news_trf
+        self.engines['es'] = es_dep_news_trf.load()
+        import ru_core_news_lg
+        self.engines['ru'] = ru_core_news_lg.load()
+        import pl_core_news_lg
+        self.engines['pl'] = pl_core_news_lg.load()
+        import it_core_news_lg
+        self.engines['it'] = it_core_news_lg.load()
+        import ko_core_news_lg
+        self.engines['ko'] = ko_core_news_lg.load()
         # chinese models
         import spacy.lang.zh
         self.engines['zh_char'] = spacy.lang.zh.Chinese()
