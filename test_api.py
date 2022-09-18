@@ -17,14 +17,14 @@ class ApiTests(unittest.TestCase):
         pass
 
     def test_languages(self):
-        response = self.client.get('/language_list')
+        response = self.client.get('/v1/language_list')
         data = json.loads(response.data)
         self.assertIn('en', data)
 
     def test_tokenize_english(self):
         text = "I was reading today's paper."
 
-        response = self.client.post('/tokenize', json={'language': 'en', 'text': text})
+        response = self.client.post('/v1/tokenize', json={'language': 'en', 'text': text})
         data = json.loads(response.data)        
 
         pprint.pprint(data)

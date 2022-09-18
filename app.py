@@ -60,8 +60,8 @@ class LanguageList(flask_restful.Resource):
         return manager.language_list()
 
 
-api.add_resource(Tokenize, '/tokenize')
-api.add_resource(LanguageList, '/language_list')
+api.add_resource(Tokenize, '/v1/tokenize')
+api.add_resource(LanguageList, '/v1/language_list')
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
