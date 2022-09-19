@@ -191,3 +191,46 @@ class ApiTests(unittest.TestCase):
             'token': '人'}]
 
         self.assertEqual(data, expected_result_words)
+
+    def test_more_languages(self):
+        input_sentences = [
+            {
+                'sentence': 'There are many foreigners in China',
+                'language_code': 'en'
+            },
+            {
+                'sentence': 'Je ne suis pas intéressé.',
+                'language_code': 'fr'
+            },
+            {
+                'sentence': '천천히 말해 주십시오',
+                'language_code': 'ko'
+            },
+            {
+                'sentence': '中国有很多外国人',
+                'language_code': 'zh_char'
+            },
+            {
+                'sentence': 'おはようございます',
+                'language_code': 'ja'
+            },
+            {
+                'sentence': 'улица',
+                'language_code': 'ru'
+            },
+            {
+                'sentence': 'Ich esse kein Schweinefleisch.',
+                'language_code':'de'
+            },
+            {
+                'sentence': "Qual è l'ora di chiusura?",
+                'language_code': 'it'
+            }
+
+        ]
+
+        for input_sentence in input_sentences:
+            text = input_sentence['sentence']
+            language = input_sentence['language_code']
+            data = self.post_query('/v1/tokenize', data={'language': language, 'text': text})
+            self.assertTrue(len(data) > 0)
