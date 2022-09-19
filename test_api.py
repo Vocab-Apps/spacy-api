@@ -192,6 +192,30 @@ class ApiTests(unittest.TestCase):
 
         self.assertEqual(data, expected_result_words)
 
+    def test_tokenize_chinese_words_pkuseg(self):
+        text = "送外卖的人"
+
+        data = self.post_query('/v1/tokenize', data={'language': 'zh_pkuseg', 'text': text})
+
+        expected_result_words = [{'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '送',
+            'token': '送'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '外卖',
+            'token': '外卖'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '的',
+            'token': '的'},
+            {'can_translate': True,
+            'can_transliterate': True,
+            'lemma': '人',
+            'token': '人'}]
+
+        self.assertEqual(data, expected_result_words)        
+
     def test_more_languages(self):
         input_sentences = [
             {

@@ -26,6 +26,7 @@ RUN python3 -m spacy download ru_core_news_lg
 RUN python3 -m spacy download pl_core_news_lg
 RUN python3 -m spacy download it_core_news_lg
 RUN python3 -m spacy download ko_core_news_lg
+RUN pip3 install --no-cache-dir spacy-pkuseg && pip3 cache purge
 
 # install requirements
 COPY requirements.txt ./
