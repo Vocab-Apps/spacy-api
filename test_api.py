@@ -26,7 +26,7 @@ class ApiTests(unittest.TestCase):
 
     def get_query(self, path):
         if self.external_url != None:
-            response = requests.get(self.external_url + path)
+            response = requests.get(self.external_url + path, timeout=10)
             return response.json()
         else:
             response = self.client.get(path)
@@ -34,7 +34,7 @@ class ApiTests(unittest.TestCase):
 
     def post_query(self, path, data):
         if self.external_url != None:
-            response = requests.post(self.external_url + path, json=data)
+            response = requests.post(self.external_url + path, json=data, timeout=10)
             return response.json()
         else:
             response = self.client.post(path, json=data)
