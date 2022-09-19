@@ -14,11 +14,8 @@ RUN apt-get update -y && apt-get install -y python3-pip
 # update pip
 RUN pip3 install --upgrade pip
 
-# install requirements
-COPY requirements.txt ./
-RUN pip3 install --no-cache-dir -r requirements.txt && pip3 cache purge
-
 # install spacy modules
+RUN pip3 install --no-cache-dir spacy && pip3 cache purge
 RUN python3 -m spacy download en_core_web_trf
 RUN python3 -m spacy download fr_dep_news_trf
 RUN python3 -m spacy download zh_core_web_trf
@@ -29,6 +26,10 @@ RUN python3 -m spacy download ru_core_news_lg
 RUN python3 -m spacy download pl_core_news_lg
 RUN python3 -m spacy download it_core_news_lg
 RUN python3 -m spacy download ko_core_news_lg
+
+# install requirements
+COPY requirements.txt ./
+RUN pip3 install --no-cache-dir -r requirements.txt && pip3 cache purge
 
 # copy app files
 COPY api.py start.sh ./
