@@ -4,6 +4,16 @@ from flask import Flask, request
 import flask_restful
 import logging
 import spacy
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+sentry_sdk.init(
+    dsn="https://a12aca189f024156b8ff4ac1bb2b9e39@o968582.ingest.sentry.io/6758293",
+    integrations=[
+        FlaskIntegration(),
+    ],
+    traces_sample_rate=0.25
+)
 
 logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
                     datefmt='%Y%m%d-%H:%M:%S',

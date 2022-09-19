@@ -3,3 +3,4 @@ flask_restful
 gunicorn
 spacy
 jieba
+sentry-sdk[flask]
