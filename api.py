@@ -94,9 +94,14 @@ class LanguageList(flask_restful.Resource):
     def get(self):
         return manager.language_list()
 
+class Health(flask_restful.Resource):
+    def get(self):
+        return {'status': 'OK'}, 200
+
 
 api.add_resource(Tokenize, '/v1/tokenize')
 api.add_resource(LanguageList, '/v1/language_list')
+api.add_resource(Health, '/_health')
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
