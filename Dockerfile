@@ -4,12 +4,7 @@
 # docker container stop spacy_api
 # docker container rm spacy_api
 
-FROM ubuntu:20.04
-
-# use ubuntu mirrors
-RUN sed -i -e 's|archive\.ubuntu\.com|mirrors\.xtom\.com\.hk|g' /etc/apt/sources.list
-# install packages first
-RUN apt-get update -y && apt-get install -y python3-pip
+FROM 3.11-slim-bookworm
 
 # update pip
 RUN pip3 install --upgrade pip
