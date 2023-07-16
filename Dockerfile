@@ -4,7 +4,7 @@
 # docker container stop spacy_api
 # docker container rm spacy_api
 
-FROM 3.11-slim-bookworm
+FROM python:3.11-slim-bookworm
 
 # update pip
 RUN pip3 install --upgrade pip
