@@ -30,16 +30,16 @@ class SpacyManager():
 
         logger.info('loading engines')
 
-        import en_core_web_trf
-        self.engines['en'] = en_core_web_trf.load()
-        import fr_dep_news_trf
-        self.engines['fr'] = fr_dep_news_trf.load()
+        import en_core_web_lg
+        self.engines['en'] = en_core_web_lg.load()
+        import fr_core_news_lg
+        self.engines['fr'] = fr_core_news_lg.load()
         import ja_core_news_lg
         self.engines['ja'] = ja_core_news_lg.load()
-        import de_dep_news_trf
-        self.engines['de'] = de_dep_news_trf.load()
-        import es_dep_news_trf
-        self.engines['es'] = es_dep_news_trf.load()
+        import de_core_news_lg
+        self.engines['de'] = de_core_news_lg.load()
+        import es_core_news_lg
+        self.engines['es'] = es_core_news_lg.load()
         import ru_core_news_lg
         self.engines['ru'] = ru_core_news_lg.load()
         import pl_core_news_lg
